@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all reactions
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new reaction
+    </h2>
+
+    <form action="/insert_reaction" method="post">
+      <div>
+        <label for="reaction_category_id_box">
+          Reaction category
+        </label>
+
+        <input type="text" id="reaction_category_id_box" name="query_reaction_category_id">
+      </div>
+
+      <div>
+        <label for="reactor_id_box">
+          Reactor
+        </label>
+
+        <input type="text" id="reactor_id_box" name="query_reactor_id">
+      </div>
+
+      <button>
+        Create reaction
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Reaction category
+        </th>
+
+        <th>
+          Reactor
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_reactions.each do |a_reaction| %>
+      <tr>
+        <td>
+          <%= a_reaction.id %>
+        </td>
+
+        <td>
+          <%= a_reaction.reaction_category_id %>
+        </td>
+
+        <td>
+          <%= a_reaction.reactor_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_reaction.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_reaction.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/reactions/<%= a_reaction.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

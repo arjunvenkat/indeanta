@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Reaction #<%= @the_reaction.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/reactions">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_reaction/<%= @the_reaction.id %>">
+          Delete reaction
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Reaction category
+      </dt>
+      <dd>
+        <%= @the_reaction.reaction_category_id %>
+      </dd>
+
+      <dt>
+        Reactor
+      </dt>
+      <dd>
+        <%= @the_reaction.reactor_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_reaction.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_reaction.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit reaction
+    </h2>
+
+    <form action="/modify_reaction/<%= @the_reaction.id %>"  method="post" >
+      <div>
+        <label for="reaction_category_id_box">
+          Reaction category
+        </label>
+
+        <input type="text" id="reaction_category_id_box" name="query_reaction_category_id" value="<%= @the_reaction.reaction_category_id %>">
+      </div>
+
+      <div>
+        <label for="reactor_id_box">
+          Reactor
+        </label>
+
+        <input type="text" id="reactor_id_box" name="query_reactor_id" value="<%= @the_reaction.reactor_id %>">
+      </div>
+
+      <button>
+        Update reaction
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

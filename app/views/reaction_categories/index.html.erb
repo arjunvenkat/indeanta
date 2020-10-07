@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all reaction categories
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new reaction category
+    </h2>
+
+    <form action="/insert_reaction_category" method="post">
+      <div>
+        <label for="display_html_box">
+          Display html
+        </label>
+
+        <input type="text" id="display_html_box" name="query_display_html">
+      </div>
+
+      <div>
+        <label for="position_box">
+          Position
+        </label>
+
+        <input type="text" id="position_box" name="query_position">
+      </div>
+
+      <div>
+        <label for="reactions_count_box">
+          Reactions count
+        </label>
+
+        <input type="text" id="reactions_count_box" name="query_reactions_count">
+      </div>
+
+      <button>
+        Create reaction category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Display html
+        </th>
+
+        <th>
+          Position
+        </th>
+
+        <th>
+          Reactions count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_reaction_categories.each do |a_reaction_category| %>
+      <tr>
+        <td>
+          <%= a_reaction_category.id %>
+        </td>
+
+        <td>
+          <%= a_reaction_category.display_html %>
+        </td>
+
+        <td>
+          <%= a_reaction_category.position %>
+        </td>
+
+        <td>
+          <%= a_reaction_category.reactions_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_reaction_category.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_reaction_category.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/reaction_categories/<%= a_reaction_category.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

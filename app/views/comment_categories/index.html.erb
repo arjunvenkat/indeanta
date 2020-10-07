@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all comment categories
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new comment category
+    </h2>
+
+    <form action="/insert_comment_category" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="position_box">
+          Position
+        </label>
+
+        <input type="text" id="position_box" name="query_position">
+      </div>
+
+      <button>
+        Create comment category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Position
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_comment_categories.each do |a_comment_category| %>
+      <tr>
+        <td>
+          <%= a_comment_category.id %>
+        </td>
+
+        <td>
+          <%= a_comment_category.name %>
+        </td>
+
+        <td>
+          <%= a_comment_category.position %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_comment_category.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_comment_category.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/comment_categories/<%= a_comment_category.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

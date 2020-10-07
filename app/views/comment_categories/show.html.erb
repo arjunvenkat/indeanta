@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Comment category #<%= @the_comment_category.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/comment_categories">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_comment_category/<%= @the_comment_category.id %>">
+          Delete comment category
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_comment_category.name %>
+      </dd>
+
+      <dt>
+        Position
+      </dt>
+      <dd>
+        <%= @the_comment_category.position %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_comment_category.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_comment_category.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit comment category
+    </h2>
+
+    <form action="/modify_comment_category/<%= @the_comment_category.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_comment_category.name %>">
+      </div>
+
+      <div>
+        <label for="position_box">
+          Position
+        </label>
+
+        <input type="text" id="position_box" name="query_position" value="<%= @the_comment_category.position %>">
+      </div>
+
+      <button>
+        Update comment category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

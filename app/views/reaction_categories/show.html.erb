@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Reaction category #<%= @the_reaction_category.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/reaction_categories">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_reaction_category/<%= @the_reaction_category.id %>">
+          Delete reaction category
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Display html
+      </dt>
+      <dd>
+        <%= @the_reaction_category.display_html %>
+      </dd>
+
+      <dt>
+        Position
+      </dt>
+      <dd>
+        <%= @the_reaction_category.position %>
+      </dd>
+
+      <dt>
+        Reactions count
+      </dt>
+      <dd>
+        <%= @the_reaction_category.reactions_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_reaction_category.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_reaction_category.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit reaction category
+    </h2>
+
+    <form action="/modify_reaction_category/<%= @the_reaction_category.id %>"  method="post" >
+      <div>
+        <label for="display_html_box">
+          Display html
+        </label>
+
+        <input type="text" id="display_html_box" name="query_display_html" value="<%= @the_reaction_category.display_html %>">
+      </div>
+
+      <div>
+        <label for="position_box">
+          Position
+        </label>
+
+        <input type="text" id="position_box" name="query_position" value="<%= @the_reaction_category.position %>">
+      </div>
+
+      <div>
+        <label for="reactions_count_box">
+          Reactions count
+        </label>
+
+        <input type="text" id="reactions_count_box" name="query_reactions_count" value="<%= @the_reaction_category.reactions_count %>">
+      </div>
+
+      <button>
+        Update reaction category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
