@@ -20,11 +20,12 @@ class ReactionsController < ApplicationController
   def create
     the_reaction = Reaction.new
     the_reaction.reaction_category_id = params.fetch("query_reaction_category_id")
-    the_reaction.reactor_id = params.fetch("query_reactor_id")
+    the_reaction.reactor_id = params["query_reactor_id"]
+    the_reaction.post_id = params.fetch("query_post_id")
 
     if the_reaction.valid?
       the_reaction.save
-      redirect_to("/reactions", { :notice => "Reaction created successfully." })
+      redirect_to(the_reaction.post, { :notice => "Reaction created successfully." })
     else
       redirect_to("/reactions", { :notice => "Reaction failed to create successfully." })
     end
@@ -35,7 +36,8 @@ class ReactionsController < ApplicationController
     the_reaction = Reaction.where({ :id => the_id }).at(0)
 
     the_reaction.reaction_category_id = params.fetch("query_reaction_category_id")
-    the_reaction.reactor_id = params.fetch("query_reactor_id")
+    the_reaction.reactor_id = params["query_reactor_id"]
+    the_reaction.post_id = params.fetch("query_post_id")
 
     if the_reaction.valid?
       the_reaction.save

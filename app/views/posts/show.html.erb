@@ -1,16 +1,22 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <h1><%= @the_post.title %></h1>
       <p><%= simple_format(@the_post.body) %></p>
+    </div>
+    <div class="col-md-5">
       <% ReactionCategory.all.each_with_index do |rc, index| %>
-        <a href="#"><%= rc.display_html.html_safe %></a>
+        <%= link_to reactions_url(
+          query_reaction_category_id: rc.id,
+          query_post_id: @the_post.id
+        ), method: :post do %><%= rc.display_html.html_safe %><% end %>
+        (<%= Reaction.where(reaction_category_id: rc.id, post_id: @the_post.id).count %>)
         <% if index < ReactionCategory.all.count - 1 %>
           |
         <% end %>
       <% end %>
       <hr>
-      <%= form_for(Comment.new) do |f| %>
+      <%= form_for(Comment.new, html: {class: "mb-5"}) do |f| %>
         <div class="form-group">
           Comment with <%= f.collection_select(:comment_category_id, CommentCategory.all, :id, :name) %>
         </div>
@@ -20,8 +26,17 @@
         <%= f.hidden_field :post_id, value: @the_post.id %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
-
-
+      <% Comment.where(post_id: @the_post.id).order(created_at: :asc).each do |comment| %>
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5>
+              <%= comment.comment_category.name %>
+              <small class="text-muted">created <%= time_ago_in_words(comment.created_at) %> ago</small>
+            </h5>
+            <p><%= comment.body %></p>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
