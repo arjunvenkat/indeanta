@@ -5,7 +5,7 @@
       <p><%= simple_format(@the_post.body) %></p>
     </div>
     <div class="col-md-5">
-      <% ReactionCategory.all.each_with_index do |rc, index| %>
+      <% ReactionCategory.order(position: :asc).each_with_index do |rc, index| %>
         <%= link_to reactions_url(
           query_reaction_category_id: rc.id,
           query_post_id: @the_post.id
