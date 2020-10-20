@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div>
         <div>
           <h2>
@@ -22,7 +22,8 @@
                 Body
               </label>
 
-              <textarea id="body_box" name="query_body" rows="3" class="form-control"></textarea>
+              <input id="body_box" name="query_body" type="hidden" name="content">
+              <trix-editor input="body_box"></trix-editor>
             </div>
 
             <button class="btn btn-primary">

@@ -16,6 +16,8 @@ gem 'jquery-rails'
 gem 'rails-ujs'
 gem 'faker'
 gem 'turbolinks'
+gem 'carrierwave', '~> 2.0'
+gem "cloudinary"
 
 group :development do
   gem 'listen', '~> 3.2'

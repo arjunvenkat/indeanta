@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :photos
   resources :comments
   # Routes for the Post resource:
 

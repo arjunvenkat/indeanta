@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dqd33bgjs
+  api_key: '393641155644153'
+  api_secret: "0Ml4eJfjR2wQpUJAgwiHnL_gbWE"
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dqd33bgjs
+  api_key: '393641155644153'
+  api_secret: "0Ml4eJfjR2wQpUJAgwiHnL_gbWE"
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dqd33bgjs
+  api_key: '393641155644153'
+  api_secret: "0Ml4eJfjR2wQpUJAgwiHnL_gbWE"
+  enhance_image_tag: true
+  static_file_support: false

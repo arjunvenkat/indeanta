@@ -17,7 +17,7 @@ puts "There are #{ReactionCategory.count} reaction categories in the database"
 CommentCategory.destroy_all
 
 CommentCategory.create(position: 1, name: "an agreement")
-CommentCategory.create(position: 2, name: "a counterpont")
+CommentCategory.create(position: 2, name: "a counterpoint")
 CommentCategory.create(position: 3, name: "a sidebar")
 
 puts "There are #{CommentCategory.count} comment categories in the database"
