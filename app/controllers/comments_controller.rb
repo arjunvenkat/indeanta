@@ -25,6 +25,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    comment_category = CommentCategory.find_by("lower(name) = lower(?)", params[:comment_category])
+    @comment.comment_category = comment_category
 
     respond_to do |format|
       if @comment.save
@@ -69,6 +71,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:body, :comment_category_id, :commenter_id, :post_id)
+      params.require(:comment).permit(:body, :commenter_id, :post_id)
     end
 end
