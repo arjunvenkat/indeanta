@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :comments
   # Routes for the Post resource:
 
+  root to: "posts#index"
+
   # CREATE
   post("/insert_post", { :controller => "posts", :action => "create" })
   get("/posts/new", { :controller => "posts", :action => "new" })

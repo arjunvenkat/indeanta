@@ -1,32 +1,39 @@
-<div >
-  <h5>
-    Edit User Account
-  </h5>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div >
+        <h5>
+          Edit User Account
+        </h5>
 
-  <div>
-    <form action="/modify_user" method="post">
-      <div>
-        <label for="email_box">Email</label>
-        <input id="email_box" name="query_email" value="<%= @current_user.email %>">
-      </div>
-      <div>
-        <label for="posts_count_box">Posts count</label>
-        <input id="posts_count_box" name="query_posts_count" value="<%= @current_user.posts_count %>">
+        <div class="pt-4">
+          <form action="/modify_user" method="post">
+            <div class="form-group">
+              <label for="email_box">Email</label>
+              <input id="email_box" name="query_email" value="<%= @current_user.email %>" class="form-control">
+            </div>
+            <div>
+              <label for="username_box">Posts count</label>
+              <input id="username_box" name="query_username" value="<%= @current_user.username %>" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label for="password_box">Password</label>
+              <input id="password_box" name="query_password" placeholder="Choose a password..." type="password" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label for="password_confirmation_box">Password Confirmation</label>
+              <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password" class="form-control">
+            </div>
+
+            <button class="btn btn-primary">
+              Update account
+            </button>
+          </form>
+        </div>
       </div>
 
-      <div>
-        <label for="password_box">Password</label>
-        <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-      </div>
-    
-      <div>
-        <label for="password_confirmation_box">Password Confirmation</label>
-        <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
-      </div>
-
-      <button>
-        Update account
-      </button>
-    </form>
+    </div>
   </div>
 </div>

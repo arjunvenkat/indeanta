@@ -1,35 +1,42 @@
-<h1>Sign up</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Sign up</h1>
 
-<form action="/insert_user" method="post">
+      <form action="/insert_user" method="post">
 
-  <div>
-    <label for="email_box">Email</label>
-    <input id="email_box" name="query_email" placeholder="Choose a email..." type="text">
+        <div class="form-group">
+          <label for="email_box">Email</label>
+          <input id="email_box" name="query_email" placeholder="Choose a email..." type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="username_box">Username</label>
+
+          <input type="text" id="username_box" name="query_username" placeholder="Choose a username..." class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="password_box">Password</label>
+          <input id="password_box" name="query_password" placeholder="Choose a password..." type="password" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="password_confirmation_box">Password Confirmation</label>
+          <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password" class="form-control">
+        </div>
+
+        <button class="btn btn-primary">
+          Sign up
+        </button>
+      </form>
+
+      <hr>
+
+      <p>
+        Or, <a href="/user_sign_in">Sign in</a> instead.
+      </p>
+
+    </div>
   </div>
-                 
-  <div>
-    <label for="posts_count_box">Posts count</label>
-      
-    <input type="text" id="posts_count_box" name="query_posts_count">
-  </div>
-    
-  <div>
-    <label for="password_box">Password</label>
-    <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-  </div>
-
-  <div>
-    <label for="password_confirmation_box">Password Confirmation</label>
-    <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
-  </div>
-
-  <button>
-    Sign up
-  </button>
-</form>
-
-<hr>
-
-<p>
-  Or, <a href="/user_sign_in">Sign in</a> instead.
-</p>
+</div>

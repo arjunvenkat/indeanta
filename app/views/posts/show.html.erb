@@ -10,25 +10,25 @@
         <div class="comment-categories">
           <div class="comment-category">
             <div class="icon-container large claim selected">
-              <%= image_tag('claim-icon') %>
+              <%= image_tag('claim-icon.webp') %>
             </div>
             <div class="text-center">Claim</div>
           </div>
           <div class="comment-category">
             <div class="icon-container large evidence">
-              <%= image_tag('evidence-icon') %>
+              <%= image_tag('evidence-icon.webp') %>
             </div>
             <div class="text-center">Evidence</div>
           </div>
           <div class="comment-category">
             <div class="icon-container large reasoning">
-              <%= image_tag('reasoning-icon') %>
+              <%= image_tag('reasoning-icon.webp') %>
             </div>
             <div class="text-center">Reasoning</div>
           </div>
           <div class="comment-category">
             <div class="icon-container large counter">
-              <%= image_tag('counter-icon') %>
+              <%= image_tag('counter-icon.webp') %>
             </div>
             <div class="text-center">Counter</div>
           </div>
@@ -42,6 +42,7 @@
           <%= f.text_area :body, class: "form-control" %>
         </div>
         <%= f.hidden_field :post_id, value: @the_post.id %>
+        <%= f.hidden_field :commenter_id, value: @current_user.try(:id) %>
         <%= hidden_field_tag :comment_category, {}, value: "claim" %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
@@ -52,8 +53,36 @@
               <span class="tag <%= comment.comment_category.name.downcase %>"></span>
               <span><%= comment.comment_category.name %></span>
             </h5>
-            <p class="text-muted"><small>created <%= time_ago_in_words(comment.created_at) %> ago</small></p>
+            <p class="text-muted"><small>
+              created <%= time_ago_in_words(comment.created_at) %> ago by
+              <% if comment.commenter %>
+                <%= comment.commenter.username %>
+              <% else %>
+                anonymous
+              <% end %>
+            </small></p>
             <p><%= comment.body %></p>
+
+            <div class="nested-comments">
+              <% comment.comments.each do |nested_comment| %>
+                <hr>
+                <div class="nested-comment">
+                  <h5>
+                    <span class="tag <%= nested_comment.comment_category.name.downcase %>"></span>
+                    <span><%= nested_comment.comment_category.name %></span>
+                  </h5>
+                  <p class="text-muted"><small>
+                    created <%= time_ago_in_words(nested_comment.created_at) %> ago by
+                    <% if nested_comment.commenter %>
+                      <%= nested_comment.commenter.username %>
+                    <% else %>
+                      anonymous
+                    <% end %>
+                  </small></p>
+                  <p><%= nested_comment.body %></p>
+                </div>
+              <% end %>
+            </div>
 
             <div class="icon-bar">
               <div class="comment-category">
@@ -75,6 +104,8 @@
                   <%= f.text_area :body, class: "form-control" %>
                 </div>
                 <%= f.hidden_field :post_id, value: @the_post.id %>
+                <%= f.hidden_field :comment_id, value: comment.id %>
+                <%= f.hidden_field :commenter_id, value: @current_user.try(:id) %>
                 <%= hidden_field_tag :comment_category, {}, value: "claim" %>
                 <%= f.submit "Submit", class: "btn btn-primary" %>
               <% end %>
@@ -90,9 +121,9 @@
     <div class="col-md-12">
       <h2>Related Posts</h2>
       <% Post.order(created_at: :desc).limit(3).each do |post| %>
-        <a href="<%= post_path(post.id) %>" class="related-post">
-          <span class="title"><%= post.title %></span>
-        </a>
+          <a href="<%= post_path(post.id) %>" class="related-post">
+            <span class="title"><%= post.title %></span>
+          </a>
       <% end %>
     </div>
   </div>
@@ -114,9 +145,11 @@
       $(".category-desc").html(categoryDescriptions[commentCategory])
     }
     if ($(this).hasClass("small")){
-      $(this).closest(".comment").addClass("form-visible");
+      $parentComment = $(this).closest(".comment");
+      $parentComment.addClass("form-visible");
       var $category = $(this).data("category");
-      $(this).closest(".comment").find(".comment-for-comment-form .category").html($category);
+      $parentComment.find(".comment-for-comment-form .category").html($category);
+      $parentComment.find("#comment_category").val($category);
     }
   })
 
