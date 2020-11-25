@@ -46,7 +46,7 @@
         <%= hidden_field_tag :comment_category, {}, value: "claim" %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
-      <% Comment.where(post_id: @the_post.id).order(created_at: :asc).each do |comment| %>
+      <% Comment.where(post_id: @the_post.id, comment_id: nil).order(created_at: :asc).each do |comment| %>
         <div class="card comment mt-3">
           <div class="card-body">
             <h5>
