@@ -1,7 +1,20 @@
 <div class="container post">
   <div class="row justify-content-center">
     <div class="col-md-7 mb-4">
-      <h1><%= @the_post.title %></h1>
+      <h1>
+        <%= @the_post.title %>
+        <% if @current_user && (@current_user.id == @the_post.author_id  || @current_user.admin) %>
+          <%= link_to "/posts/#{@the_post.id}/edit", class: "btn btn-warning" do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to "/delete_post/#{@the_post.id}", class: "btn btn-danger" do %>
+            <i class="fa fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </h1>
+      <% if @the_post.author_id > 0 %>
+        by <%= @the_post.author.username %>
+      <% end %>
       <p><%= simple_format(@the_post.body) %></p>
     </div>
     <div class="col-md-5">

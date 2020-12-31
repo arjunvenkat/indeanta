@@ -15,7 +15,13 @@
     <div class="col-md-12">
       <% @list_of_posts.each do |post| %>
         <a href="<%= post_path(post.id) %>" class="related-post">
-          <span class="title"><%= post.title %></span>
+          <span class="title">
+            <%= post.title %>
+            <% if post.author_id > 0 %>
+              <small class="author-subtitle">by <%= post.author.username %></small>
+            <% end %>
+          </span>
+
         </a>
       <% end %>
     </div>

@@ -19,8 +19,8 @@ class PostsController < ApplicationController
 
   def create
     the_post = Post.new
-    if params["query_author_id"]
-      the_post.author_id = params.fetch("query_author_id")
+    if @current_user
+      the_post.author_id = @current_user.id
     else
       the_post.author_id = 0
     end
@@ -35,11 +35,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    the_id = params.fetch("path_id")
+
+    matching_posts = Post.where({ :id => the_id })
+
+    @the_post = matching_posts.at(0)
+
+    render({ :template => "posts/edit.html.erb" })
+  end
+
   def update
     the_id = params.fetch("path_id")
     the_post = Post.where({ :id => the_id }).at(0)
-
-    the_post.author_id = params.fetch("query_author_id")
+    
     the_post.title = params.fetch("query_title")
     the_post.body = params.fetch("query_body")
 

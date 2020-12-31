@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_22_235749) do
+ActiveRecord::Schema.define(version: 2020_12_30_235938) do
 
   create_table "comment_categories", force: :cascade do |t|
     t.string "name"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_235749) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.boolean "admin", default: false
   end
 
 end

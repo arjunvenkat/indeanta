@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div>
+        <div>
+          <h2>
+            Edit post
+          </h2>
+
+          <form action="/modify_post/<%= @the_post.id %>" method="post">
+
+            <div class="form-group">
+              <label for="title_box">
+                Title
+              </label>
+
+              <input type="text" id="title_box" name="query_title" class="form-control" value="<%= @the_post.title %>">
+            </div>
+
+            <div class="form-group">
+              <label for="body_box">
+                Body
+              </label>
+
+              <input id="body_box" name="query_body" type="hidden" value="<%= @the_post.body %>" name="content">
+              <trix-editor input="body_box"></trix-editor>
+            </div>
+
+            <button class="btn btn-primary">
+              Update post
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
